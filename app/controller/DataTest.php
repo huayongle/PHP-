@@ -5,6 +5,7 @@ namespace app\controller;
 
 
 use app\model\User;
+use think\db\Where;
 use think\facade\Db;
 use function Symfony\Component\VarDumper\Dumper\esc;
 
@@ -99,6 +100,52 @@ class DataTest
             ]
         ];
         return Db::name('user')->insertAll($dataAll);       //使用一个二维数组
+    }
+
+    //修改
+    public function update()
+    {
+        echo 'hello world!'.'<br>';
+        //普通的根据条件修改
+//        $data=[
+//
+//            'name'=>'克拉拉'
+//        ];
+//
+//        return Db::name('user')->where('id',2)->update($data);
+
+
+//         $data=[
+//             'id'=>2,
+//            'name'=>'李敏成'
+//        ];
+//
+//        return Db::name('user')->update($data);
+
+        //全部字母为大写
+//        return Db::name('user')->where('id',2)->exp('name','UPPER(name)')->update();
+
+        //save方法修改
+        $data=[
+             'id'=>2,
+            'name'=>'李成敏'
+        ];
+        return Db::name('user')->save($data);
+    }
+
+    public function delete()
+    {
+        //单条删除
+        //return Db::name('user')->delete(24);
+
+        //多条删除
+        //return Db::name('user')->delete([16,17]);
+
+        //根据条件删除
+        return Db::name('user')->where('id',14)->delete();
+
+        //删除所有
+        //return Db::name('user')->delete(true);
     }
 
 }
